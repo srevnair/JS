@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jagan Sreejith | Young Artist & Flutist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-deep: #0a1628;
+            --primary-blue: #1a365d;
+            --accent-gold: #f6ad55;
+            --accent-amber: #ed8936;
+            --metallic-silver: #a0aec0;
+            --metallic-light: #e2e8f0;
+            --glow-blue: #4299e1;
+            --white: #ffffff;
+            --text-light: #f7fafc;
+            --text-muted: #cbd5e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--primary-deep);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background Grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.03;
+            background-image: 
+                linear-gradient(var(--metallic-silver) 1px, transparent 1px),
+                linear-gradient(90deg, var(--metallic-silver) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Floating Geometric Shapes - Transformer Theme */
+        .geo-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            top: 10%;
+            left: 5%;
+            width: 100px;
+            height: 100px;
+            border: 2px solid var(--glow-blue);
+            animation-delay: 0s;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        .shape-2 {
+            top: 60%;
+            right: 10%;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, transparent 70%);
+            animation-delay: -5s;
+            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+        }
+
+        .shape-3 {
+            bottom: 20%;
+            left: 15%;
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--accent-amber);
+            animation-delay: -10s;
+            transform: rotate(45deg);
+        }
+
+        .shape-4 {
+            top: 30%;
+            right: 20%;
+            width: 120px;
+            height: 120px;
+            border: 1px solid var(--metallic-silver);
+            animation-delay: -15s;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(20px) rotate(-5deg); }
+        }
+
+        /* Transform Animation Accent */
+        .transform-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            z-index: 100;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .transform-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .transform-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--accent-gold);
+            opacity: 0.6;
+            animation: morph 8s infinite ease-in-out;
+        }
+
+        @keyframes morph {
+            0%, 100% { 
+                clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+                transform: rotate(0deg);
+            }
+            50% { 
+                clip-path: polygon(50% 10%, 90% 30%, 90% 70%, 50% 90%, 10% 70%, 10% 30%);
+                transform: rotate(180deg);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(10, 22, 40, 0.95), transparent);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--white);
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 50px 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1400px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .hero-text {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-greeting {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .hero-greeting::before {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--accent-gold);
+        }
+
+        .hero-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--metallic-silver) 50%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .hero-tagline span {
+            color: var(--accent-amber);
+            font-weight: 500;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .hero-image {
+            position: relative;
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .image-frame {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .image-frame::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent-gold);
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+            z-index: -1;
+        }
+
+        .image-frame::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: -15px;
+            width: 60%;
+            height: 60%;
+            border: 2px solid var(--glow-blue);
+            clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 0 15%);
+            z-index: -1;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
+            filter: grayscale(10%);
+            transition: all 0.5s ease;
+        }
+
+        .hero-img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+        }
+
+        /* Glowing orb behind image */
+        .glow-orb {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--glow-blue) 0%, transparent 70%);
+            opacity: 0.2;
+            z-index: -2;
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(180deg, transparent 0%, rgba(26, 54, 93, 0.2) 50%, transparent 100%);
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-text p:first-child::first-letter {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            float: left;
+            margin-right: 15px;
+            color: var(--accent-gold);
+            line-height: 1;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(26, 54, 93, 0.5) 0%, rgba(10, 22, 40, 0.8) 100%);
+            border: 1px solid rgba(160, 174, 192, 0.2);
+            padding: 30px;
+            text-align: center;
+            clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .stat-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Passions Section */
+        .passions {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .passion-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .passion-card {
+            background: linear-gradient(180deg, rgba(26, 54, 93, 0.4) 0%, rgba(10, 22, 40, 0.9) 100%);
+            border: 1px solid rgba(160, 174, 192, 0.1);
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            clip-path: polygon(0 5%, 5% 0, 100% 0, 100% 95%, 95% 100%, 0 100%);
+        }
+
+        .passion-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-amber));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .passion-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .passion-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(246, 173, 85, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .passion-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .passion-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--white);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .passion-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Family Section */
+        .family {
+            background: linear-gradient(180deg, transparent 0%, rgba(246, 173, 85, 0.05) 50%, transparent 100%);
+        }
+
+        .family-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .family-quote {
+            font-size: 1.8rem;
+            color: var(--text-light);
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .family-quote span {
+            color: var(--accent-gold);
+        }
+
+        .family-members {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+        }
+
+        .family-member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .member-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-deep));
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .member-label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Transformer Decoration */
+        .transform-deco {
+            position: relative;
+            padding: 60px 0;
+            overflow: hidden;
+        }
+
+        .transform-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold), var(--glow-blue), var(--accent-gold), transparent);
+            position: relative;
+        }
+
+        .transform-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            background: var(--primary-deep);
+            border: 2px solid var(--accent-gold);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 50px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border-top: 1px solid rgba(160, 174, 192, 0.1);
+        }
+
+        .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-transform {
+            margin-top: 20px;
+            font-size: 0.7rem;
+            color: rgba(160, 174, 192, 0.5);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 50px;
+            }
+
+            .hero-text {
+                order: 2;
+            }
+
+            .hero-image {
+                order: 1;
+            }
+
+            .hero-greeting {
+                justify-content: center;
+            }
+
+            .hero-greeting::before {
+                display: none;
+            }
+
+            .hero-desc {
+                margin: 0 auto;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .passion-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 25px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 25px 60px;
+            }
+
+            .hero-name {
+                font-size: 2.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.2rem;
+            }
+
+            section {
+                padding: 60px 25px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .passion-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .family-members {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+
+            .family-quote {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    
+    <!-- Floating Geometric Shapes -->
+    <div class="geo-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">JS<span>rijith</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#passions">Passions</a></li>
+            <li><a href="#family">Family</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-greeting">Young Artist</div>
+                <h1 class="hero-name">Jagan Sreejith</h1>
+                <p class="hero-tagline">Indian Classical <span>Flutist</span> & Vocalist</p>
+                <p class="hero-desc">
+                    A passionate young artist with a soulful connection to Indian classical music. 
+                    Through the enchanting melodies of the Bansuri and the power of voice, 
+                    Jagan brings ancient traditions to life with youthful energy and dedication.
+                </p>
+            </div>
+            <div class="hero-image">
+                <div class="glow-orb"></div>
+                <div class="image-frame">
+                    <img src="images/jagan.png" alt="Jagan Sreejith" class="hero-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transformer Decoration -->
+    <div class="transform-deco">
+        <div class="transform-line">
+            <div class="transform-center"></div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-header">
+            <p class="section-label">Get to Know</p>
+            <h2 class="section-title">About Jagan</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Jagan Sreejith is a multi-talented young artist whose creativity knows no bounds. 
+                    With the Indian flute (Bansuri) as his instrument of choice, he creates melodies 
+                    that touch the heart and transport listeners to a world of musical wonder. 
+                    His vocal abilities in Indian classical music complement his instrumental prowess, 
+                    making him a complete performer.
+                </p>
+                <p>
+                    Beyond music, Jagan is an enthusiastic martial artist practicing Karate, 
+                    a skilled artist who expresses himself through drawing, and a mathematics 
+                    enthusiast who finds joy in solving complex problems. When he's not perfecting 
+                    his craft, you might find him exploring the world of Transformers — his favorite 
+                    robots in disguise!
+                </p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">🎵</div>
+                    <div class="stat-label">Music</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🥋</div>
+                    <div class="stat-label">Karate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎨</div>
+                    <div class="stat-label">Art</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔢</div>
+                    <div class="stat-label">Mathematics</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Passions Section -->
+    <section class="passions" id="passions">
+        <div class="section-header">
+            <p class="section-label">Explore</p>
+            <h2 class="section-title">Passions & Talents</h2>
+        </div>
+        <div class="passion-grid">
+            <div class="passion-card">
+                <span class="passion-icon">🪈</span>
+                <h3 class="passion-title">Indian Flute</h3>
+                <p class="passion-desc">
+                    Master of the Bansuri, creating soul-stirring melodies rooted in Indian classical traditions.
+                </p>
+            </div>
+            <div class="passion-card">
+                <span class="passion-icon">🎤</span>
+                <h3 class="passion-title">Vocal Arts</h3>
+                <p class="passion-desc">
+                    A gifted singer specializing in Indian classical music with a voice that captivates audiences.
+                </p>
+            </div>
+            <div class="passion-card">
+                <span class="passion-icon">🥋</span>
+                <h3 class="passion-title">Karate</h3>
+                <p class="passion-desc">
+                    Disciplined martial artist developing strength, focus, and self-defense skills.
+                </p>
+            </div>
+            <div class="passion-card">
+                <span class="passion-icon">✏️</span>
+                <h3 class="passion-title">Drawing</h3>
+                <p class="passion-desc">
+                    Artistic expression through pencil and paper, bringing imagination to life visually.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transformer Decoration -->
+    <div class="transform-deco">
+        <div class="transform-line">
+            <div class="transform-center"></div>
+        </div>
+    </div>
+
+    <!-- Family Section -->
+    <section class="family" id="family">
+        <div class="section-header">
+            <p class="section-label">Support System</p>
+            <h2 class="section-title">Family</h2>
+        </div>
+        <div class="family-content">
+            <p class="family-quote">
+                "Behind every young artist is a <span>loving family</span> that nurtures dreams 
+                and encourages creativity every step of the way."
+            </p>
+            <div class="family-members">
+                <div class="family-member">
+                    <div class="member-icon">👨</div>
+                    <span class="member-label">Dad</span>
+                </div>
+                <div class="family-member">
+                    <div class="member-icon">👩</div>
+                    <span class="member-label">Mom</span>
+                </div>
+                <div class="family-member">
+                    <div class="member-icon">👦</div>
+                    <span class="member-label">Brother</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">Jagan Sreejith</div>
+        <p class="footer-text">Young Artist • Flutist • Vocalist • Dreamer</p>
+        <p class="footer-transform">✦ More Than Meets The Eye ✦</p>
+    </footer>
+
+    <!-- Subtle Transformer Icon -->
+    <div class="transform-icon" title="More than meets the eye!">
+        <svg viewBox="0 0 100 100">
+            <polygon points="50,5 95,30 95,70 50,95 5,70 5,30" />
+        </svg>
+    </div>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Parallax effect for shapes
+        document.addEventListener('mousemove', (e) => {
+            const shapes = document.querySelectorAll('.shape');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 10;
+                shape.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+
+        // Transform icon click effect
+        document.querySelector('.transform-icon').addEventListener('click', function() {
+            this.style.animation = 'none';
+            this.offsetHeight; // Trigger reflow
+            this.style.animation = 'transform-click 0.5s ease';
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.passion-card, .stat-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
